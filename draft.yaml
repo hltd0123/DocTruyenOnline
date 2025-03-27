@@ -1,0 +1,108 @@
+models:
+  Account:
+    acId: id
+    userName: string
+    email: string
+    password: string
+    role: integer
+    create_at: timestamp nullable
+    update_at: timestamp nullable
+    status: integer default:0
+    comments: hasMany Comment
+    favorites: hasMany Favorite
+    views: hasMany View
+
+  Author:
+    authorId: id
+    name: string
+    bio: text nullable
+    create_at: timestamp nullable
+    update_at: timestamp nullable
+    status: integer default:0
+    stories: hasMany Story
+
+  Category:
+    categoryId: id
+    name: string
+    description: text nullable
+    create_at: timestamp nullable
+    update_at: timestamp nullable
+    status: integer default:0
+
+  Story:
+    storyId: id
+    title: string
+    description: text nullable
+    coverImage: string nullable
+    create_at: timestamp nullable
+    update_at: timestamp nullable
+    status: boolean default:0
+    author_id: foreign:authors
+    category_id: foreign:categories
+
+  Chapter:
+    chapterId: id
+    chapterTitle: string
+    content: text
+    chapterNumber: integer
+    create_at: timestamp nullable
+    update_at: timestamp nullable
+    status: integer default:0
+    story_id: foreign:stories
+
+  Comment:
+    commentId: id
+    content: text
+    create_at: timestamp nullable
+    update_at: timestamp nullable
+    status: integer default:0
+    account_id: foreign:accounts
+    story_id: foreign:stories nullable
+    chapter_id: foreign:chapters nullable
+
+  Favorite:
+    favoriteId: id
+    create_at: timestamp nullable
+    update_at: timestamp nullable
+    status: integer default:0
+    account_id: foreign:accounts
+    story_id: foreign:stories
+
+  View:
+    viewId: id
+    viewed_at: timestamp
+    create_at: timestamp nullable
+    update_at: timestamp nullable
+    status: integer default:0
+    account_id: foreign:accounts
+    story_id: foreign:stories
+    chapter_id: foreign:chapters nullable
+
+controllers:
+  Account:
+    resource: api
+  Author:
+    resource: api
+  Category:
+    resource: api
+  Story:
+    resource: api
+  Chapter:
+    resource: api
+  Comment:
+    resource: api
+  Favorite:
+    resource: api
+  View:
+    resource: api
+
+routes:
+  api:
+    account: Account
+    author: Author
+    category: Category
+    story: Story
+    chapter: Chapter
+    comment: Comment
+    favorite: Favorite
+    view: View

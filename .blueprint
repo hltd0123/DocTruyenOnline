@@ -1,0 +1,84 @@
+created:
+    - app/Http/Controllers/AccountController.php
+    - app/Http/Controllers/AuthorController.php
+    - app/Http/Controllers/CategoryController.php
+    - app/Http/Controllers/StoryController.php
+    - app/Http/Controllers/ChapterController.php
+    - app/Http/Controllers/CommentController.php
+    - app/Http/Controllers/FavoriteController.php
+    - app/Http/Controllers/ViewController.php
+    - database/factories/AccountFactory.php
+    - database/factories/AuthorFactory.php
+    - database/factories/CategoryFactory.php
+    - database/factories/StoryFactory.php
+    - database/factories/ChapterFactory.php
+    - database/factories/CommentFactory.php
+    - database/factories/FavoriteFactory.php
+    - database/factories/ViewFactory.php
+    - database/migrations/2025_03_26_164750_create_accounts_table.php
+    - database/migrations/2025_03_26_164751_create_authors_table.php
+    - database/migrations/2025_03_26_164752_create_categories_table.php
+    - database/migrations/2025_03_26_164753_create_stories_table.php
+    - database/migrations/2025_03_26_164754_create_chapters_table.php
+    - database/migrations/2025_03_26_164755_create_comments_table.php
+    - database/migrations/2025_03_26_164756_create_favorites_table.php
+    - database/migrations/2025_03_26_164757_create_views_table.php
+    - app/Models/Account.php
+    - app/Models/Author.php
+    - app/Models/Category.php
+    - app/Models/Story.php
+    - app/Models/Chapter.php
+    - app/Models/Comment.php
+    - app/Models/Favorite.php
+    - app/Models/View.php
+    - tests/Feature/Http/Controllers/AccountControllerTest.php
+    - tests/Feature/Http/Controllers/AuthorControllerTest.php
+    - tests/Feature/Http/Controllers/CategoryControllerTest.php
+    - tests/Feature/Http/Controllers/StoryControllerTest.php
+    - tests/Feature/Http/Controllers/ChapterControllerTest.php
+    - tests/Feature/Http/Controllers/CommentControllerTest.php
+    - tests/Feature/Http/Controllers/FavoriteControllerTest.php
+    - tests/Feature/Http/Controllers/ViewControllerTest.php
+    - app/Http/Requests/AccountStoreRequest.php
+    - app/Http/Requests/AccountUpdateRequest.php
+    - app/Http/Requests/AuthorStoreRequest.php
+    - app/Http/Requests/AuthorUpdateRequest.php
+    - app/Http/Requests/CategoryStoreRequest.php
+    - app/Http/Requests/CategoryUpdateRequest.php
+    - app/Http/Requests/StoryStoreRequest.php
+    - app/Http/Requests/StoryUpdateRequest.php
+    - app/Http/Requests/ChapterStoreRequest.php
+    - app/Http/Requests/ChapterUpdateRequest.php
+    - app/Http/Requests/CommentStoreRequest.php
+    - app/Http/Requests/CommentUpdateRequest.php
+    - app/Http/Requests/FavoriteStoreRequest.php
+    - app/Http/Requests/FavoriteUpdateRequest.php
+    - app/Http/Requests/ViewStoreRequest.php
+    - app/Http/Requests/ViewUpdateRequest.php
+    - app/Http/Resources/AccountCollection.php
+    - app/Http/Resources/AccountResource.php
+    - app/Http/Resources/AuthorCollection.php
+    - app/Http/Resources/AuthorResource.php
+    - app/Http/Resources/CategoryCollection.php
+    - app/Http/Resources/CategoryResource.php
+    - app/Http/Resources/StoryCollection.php
+    - app/Http/Resources/StoryResource.php
+    - app/Http/Resources/ChapterCollection.php
+    - app/Http/Resources/ChapterResource.php
+    - app/Http/Resources/CommentCollection.php
+    - app/Http/Resources/CommentResource.php
+    - app/Http/Resources/FavoriteCollection.php
+    - app/Http/Resources/FavoriteResource.php
+    - app/Http/Resources/ViewCollection.php
+    - app/Http/Resources/ViewResource.php
+updated:
+    - routes/api.php
+models:
+    Account: { acId: id, userName: string, email: string, password: string, role: integer, create_at: 'timestamp nullable', update_at: 'timestamp nullable', status: 'integer default:0', comments: 'hasMany Comment', favorites: 'hasMany Favorite', views: 'hasMany View' }
+    Author: { authorId: id, name: string, bio: 'text nullable', create_at: 'timestamp nullable', update_at: 'timestamp nullable', status: 'integer default:0', stories: 'hasMany Story' }
+    Category: { categoryId: id, name: string, description: 'text nullable', create_at: 'timestamp nullable', update_at: 'timestamp nullable', status: 'integer default:0' }
+    Story: { storyId: id, title: string, description: 'text nullable', coverImage: 'string nullable', create_at: 'timestamp nullable', update_at: 'timestamp nullable', status: 'boolean default:0', author_id: 'foreign:authors', category_id: 'foreign:categories' }
+    Chapter: { chapterId: id, chapterTitle: string, content: text, chapterNumber: integer, create_at: 'timestamp nullable', update_at: 'timestamp nullable', status: 'integer default:0', story_id: 'foreign:stories' }
+    Comment: { commentId: id, content: text, create_at: 'timestamp nullable', update_at: 'timestamp nullable', status: 'integer default:0', account_id: 'foreign:accounts', story_id: 'foreign:stories nullable', chapter_id: 'foreign:chapters nullable' }
+    Favorite: { favoriteId: id, create_at: 'timestamp nullable', update_at: 'timestamp nullable', status: 'integer default:0', account_id: 'foreign:accounts', story_id: 'foreign:stories' }
+    View: { viewId: id, viewed_at: timestamp, create_at: 'timestamp nullable', update_at: 'timestamp nullable', status: 'integer default:0', account_id: 'foreign:accounts', story_id: 'foreign:stories', chapter_id: 'foreign:chapters nullable' }
