@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class FavoriteController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $favorites = Favorite::all();
 
         return new FavoriteCollection($favorites);
     }
 
-    public function store(FavoriteStoreRequest $request): Response
+    public function store(FavoriteStoreRequest $request)
     {
         $favorite = Favorite::create($request->validated());
 
         return new FavoriteResource($favorite);
     }
 
-    public function show(Request $request, Favorite $favorite): Response
+    public function show(Request $request, Favorite $favorite)
     {
         return new FavoriteResource($favorite);
     }
 
-    public function update(FavoriteUpdateRequest $request, Favorite $favorite): Response
+    public function update(FavoriteUpdateRequest $request, Favorite $favorite)
     {
         $favorite->update($request->validated());
 
         return new FavoriteResource($favorite);
     }
 
-    public function destroy(Request $request, Favorite $favorite): Response
+    public function destroy(Request $request, Favorite $favorite)
     {
         $favorite->delete();
 

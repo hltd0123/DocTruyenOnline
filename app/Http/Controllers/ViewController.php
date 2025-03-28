@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class ViewController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $views = View::all();
 
         return new ViewCollection($views);
     }
 
-    public function store(ViewStoreRequest $request): Response
+    public function store(ViewStoreRequest $request)
     {
         $view = View::create($request->validated());
 
         return new ViewResource($view);
     }
 
-    public function show(Request $request, View $view): Response
+    public function show(Request $request, View $view)
     {
         return new ViewResource($view);
     }
 
-    public function update(ViewUpdateRequest $request, View $view): Response
+    public function update(ViewUpdateRequest $request, View $view)
     {
         $view->update($request->validated());
 
         return new ViewResource($view);
     }
 
-    public function destroy(Request $request, View $view): Response
+    public function destroy(Request $request, View $view)
     {
         $view->delete();
 

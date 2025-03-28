@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class AuthorController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $authors = Author::all();
 
         return new AuthorCollection($authors);
     }
 
-    public function store(AuthorStoreRequest $request): Response
+    public function store(AuthorStoreRequest $request)
     {
         $author = Author::create($request->validated());
 
         return new AuthorResource($author);
     }
 
-    public function show(Request $request, Author $author): Response
+    public function show(Request $request, Author $author)
     {
         return new AuthorResource($author);
     }
 
-    public function update(AuthorUpdateRequest $request, Author $author): Response
+    public function update(AuthorUpdateRequest $request, Author $author)
     {
         $author->update($request->validated());
 
         return new AuthorResource($author);
     }
 
-    public function destroy(Request $request, Author $author): Response
+    public function destroy(Request $request, Author $author)
     {
         $author->delete();
 

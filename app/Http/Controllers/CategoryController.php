@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $categories = Category::all();
 
         return new CategoryCollection($categories);
     }
 
-    public function store(CategoryStoreRequest $request): Response
+    public function store(CategoryStoreRequest $request)
     {
         $category = Category::create($request->validated());
 
         return new CategoryResource($category);
     }
 
-    public function show(Request $request, Category $category): Response
+    public function show(Request $request, Category $category)
     {
         return new CategoryResource($category);
     }
 
-    public function update(CategoryUpdateRequest $request, Category $category): Response
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         $category->update($request->validated());
 
         return new CategoryResource($category);
     }
 
-    public function destroy(Request $request, Category $category): Response
+    public function destroy(Request $request, Category $category)
     {
         $category->delete();
 

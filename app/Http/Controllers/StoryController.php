@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class StoryController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $stories = Story::all();
 
         return new StoryCollection($stories);
     }
 
-    public function store(StoryStoreRequest $request): Response
+    public function store(StoryStoreRequest $request)
     {
         $story = Story::create($request->validated());
 
         return new StoryResource($story);
     }
 
-    public function show(Request $request, Story $story): Response
+    public function show(Request $request, Story $story)
     {
         return new StoryResource($story);
     }
 
-    public function update(StoryUpdateRequest $request, Story $story): Response
+    public function update(StoryUpdateRequest $request, Story $story)
     {
         $story->update($request->validated());
 
         return new StoryResource($story);
     }
 
-    public function destroy(Request $request, Story $story): Response
+    public function destroy(Request $request, Story $story)
     {
         $story->delete();
 

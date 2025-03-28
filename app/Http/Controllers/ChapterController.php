@@ -12,33 +12,33 @@ use Illuminate\Http\Response;
 
 class ChapterController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $chapters = Chapter::all();
 
         return new ChapterCollection($chapters);
     }
 
-    public function store(ChapterStoreRequest $request): Response
+    public function store(ChapterStoreRequest $request)
     {
         $chapter = Chapter::create($request->validated());
 
         return new ChapterResource($chapter);
     }
 
-    public function show(Request $request, Chapter $chapter): Response
+    public function show(Request $request, Chapter $chapter)
     {
         return new ChapterResource($chapter);
     }
 
-    public function update(ChapterUpdateRequest $request, Chapter $chapter): Response
+    public function update(ChapterUpdateRequest $request, Chapter $chapter)
     {
         $chapter->update($request->validated());
 
         return new ChapterResource($chapter);
     }
 
-    public function destroy(Request $request, Chapter $chapter): Response
+    public function destroy(Request $request, Chapter $chapter)
     {
         $chapter->delete();
 
